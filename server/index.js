@@ -7,6 +7,7 @@ var express = require('express'),
 
 
 var app = express();
+app.set('port',(process.env.PORT || 4000));
 
 app.engine('html', consolidate['swig']);
 
@@ -80,6 +81,6 @@ app.get('/',function(req,res){
   res.render('main');
 });
 
-app.listen(4000,function(){
+app.listen(app.get('port'),function(){
   console.log('started');
-})
+});
