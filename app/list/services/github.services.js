@@ -12,16 +12,16 @@ export default function GithubHelper($http, $rootScope) {
             });
     };
 
-    var getRepository = function(username,repo){
-      return $http.get('//api.github.com/repos/'+username+'/'+repo+'?access_token=' + $rootScope.user.accessToken)
-      .then(function(repo){
-        return repo.data;
-      })
+    var getRepository = function(username, repo) {
+        return $http.get('//api.github.com/repos/' + username + '/' + repo + '?access_token=' + $rootScope.user.accessToken)
+            .then(function(repo) {
+                return repo.data;
+            })
     }
 
     var hostObject = {
         getMyRepositories: getMyRepositories,
-        getRepository : getRepository
+        getRepository: getRepository
     };
     return hostObject;
 }

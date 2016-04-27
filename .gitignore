@@ -1,1 +1,5 @@
 node_modules
+public/*.js
+public/dist
+public/style.css
+public/*.json

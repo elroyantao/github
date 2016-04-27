@@ -1,8 +1,0 @@
-{
-  "name": "Github list",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/elroyantao/github",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["github", "list", "static"],
-  "image": "heroku/nodejs"
-}

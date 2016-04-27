@@ -6,14 +6,16 @@
                 <a ng-href="{{repo.repository.html_url}}" class="btn btn-default view-btn" role="button" target="_blank">View on github</a>
             </div>
             <div class="owners">
-              <p>
-                This repo is owned by <a ng-href="{{repo.repository.owner.html_url}}" target="_blank">@{{repo.repository.owner.login}}</a>
-              </p>
-              <p ng-if="repo.repository.fork">
-                This is forked from the repository
-                <a ui-sref="repo({username:repo.repository.parent.owner.login,repo:repo.repository.parent.name})">{{repo.repository.parent.name}}</a>
-                owned by <a ng-href="{{repo.repository.parent.owner.html_url}}" target="_blank">@{{repo.repository.parent.owner.login}}</a>
-              </p>
+                <p class="clone">
+                  Clone url : <b>{{repo.repository.clone_url}}</b>
+                </p>
+                <p>
+                    This repo is owned by <a ng-href="{{repo.repository.owner.html_url}}" target="_blank">@{{repo.repository.owner.login}}</a>
+                </p>
+                <p ng-if="repo.repository.fork">
+                    This is forked from the repository
+                    <a ui-sref="repo({username:repo.repository.parent.owner.login,repo:repo.repository.parent.name})">{{repo.repository.parent.name}}</a> owned by <a ng-href="{{repo.repository.parent.owner.html_url}}" target="_blank">@{{repo.repository.parent.owner.login}}</a>
+                </p>
             </div>
             <div class="row info">
                 <div class="col-md-3 col-xs-6">
@@ -58,7 +60,7 @@
                 </div>
             </div>
             <div class="row description">
-              {{repo.repository.description}}
+                {{repo.repository.description}}
             </div>
         </div>
     </div>

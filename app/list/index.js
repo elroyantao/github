@@ -10,5 +10,3 @@ export default angular.module('list', [uirouter])
     .controller('ListController', ListController)
     .config(routing)
     .name;
-
-console.log('done');

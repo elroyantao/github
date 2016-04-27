@@ -3,17 +3,19 @@ nav.header {
     color: @base-color;
     height: 50px;
     .navbar-header {
+        float: left;
         .navbar-brand {
             color: @theme-color-4;
         }
     }
     .navbar-nav {
+        float: right;
         display: flex;
         align-items: center;
-        margin-right: 0;
+        margin: 0;
         height: 50px;
         .profile-image {
-          padding: 0 10px;
+            padding: 0 10px;
             img {
                 width: 30px;
             }
@@ -23,10 +25,10 @@ nav.header {
             text-decoration: none;
             margin: 0 20px 0 0;
         }
-        .logout{
-          background : @theme-color-3;
-          color: @theme-color-1;
-          text-shadow: none;
+        .logout {
+            background: @theme-color-3;
+            color: @theme-color-1;
+            text-shadow: none;
         }
     }
 }
