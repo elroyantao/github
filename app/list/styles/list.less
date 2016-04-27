@@ -1,12 +1,24 @@
 .list-container {
     .list-item {
         background-color: @base-color;
-        .repo-title{
-          color: @theme-color-1 !important;
-          text-decoration: none !important;
-          padding-bottom: 10px;
-          font-size: 25px;
+        .title-region{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+          .repo-title{
+            color: @theme-color-1 !important;
+            text-decoration: none !important;
+            padding-bottom: 10px;
+            font-size: 25px;
+          }
+          .view-btn{
+            background : @theme-color-3;
+            color: @theme-color-1;
+            text-shadow: none;
+          }
         }
+
         .info {
             .info-item {
                 display: flex;

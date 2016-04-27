@@ -23,11 +23,11 @@
                 <a class="navbar-brand" href="#">GithubViewer</a>
             </div>
             <div class="nav navbar-nav navbar-right">
-                <a class="navbar-brand" href="{{user.html_url}}">
+                <a class="profile-image" href="{{user.html_url}}" target="_blank">
                   <img src="{{user.avatar_url}}" alt="{{user.name}}" class="img-rounded" />
                 </a>
-                <a class="name" href="{{user.html_url}}">{{user.name}}</a>
-                <a href="/logout" class="btn btn-default logout" role="button">Logout</a>
+                <a class="name" href="{{user.html_url}}" target="_blank">{{user.name}}</a>
+                <a href="/logout" class="btn btn-default logout" role="button" target="_blank">Logout</a>
 
             </div>
         </div>

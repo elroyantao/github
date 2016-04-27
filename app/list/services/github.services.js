@@ -12,8 +12,8 @@ export default function GithubHelper($http, $rootScope) {
             });
     };
 
-    var getRepository = function(id){
-      return $http.get('//api.github.com/repos/'+$rootScope.user.login+'/'+id+'?access_token=' + $rootScope.user.accessToken)
+    var getRepository = function(username,repo){
+      return $http.get('//api.github.com/repos/'+username+'/'+repo+'?access_token=' + $rootScope.user.accessToken)
       .then(function(repo){
         return repo.data;
       })

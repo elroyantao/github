@@ -1,51 +1,65 @@
-
-<div class="page-container container">
-  <div class="list-container col-sm-10 col-sm-offset-1">
-    <div class="list-item jumbotron" >
-      <a href="#" class="repo-title">{{repo.repository.name}}</a>
-      <br><br>
-      <div class="row info">
-        <div class="col-md-3 col-xs-6">
-          <div class="row info-item">
-            <div class="title">
-              <span><i class="fa fa-star" aria-hidden="true"></i> Stars</span>
+<div class=" container">
+    <div class="list-container col-sm-10 col-sm-offset-1">
+        <div class="list-item jumbotron">
+            <div class="title-region">
+                <a href="#" class="repo-title">{{repo.repository.name}}</a>
+                <a ng-href="{{repo.repository.html_url}}" class="btn btn-default view-btn" role="button" target="_blank">View on github</a>
             </div>
-            <div class="count">
-              {{repo.repository.stargazers_count}}
+            <div class="owners">
+              <p>
+                This repo is owned by <a ng-href="{{repo.repository.owner.html_url}}" target="_blank">@{{repo.repository.owner.login}}</a>
+              </p>
+              <p ng-if="repo.repository.fork">
+                This is forked from the repository
+                <a ui-sref="repo({username:repo.repository.parent.owner.login,repo:repo.repository.parent.name})">{{repo.repository.parent.name}}</a>
+                owned by <a ng-href="{{repo.repository.parent.owner.html_url}}" target="_blank">@{{repo.repository.parent.owner.login}}</a>
+              </p>
             </div>
-          </div>
+            <div class="row info">
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-star" aria-hidden="true"></i> Stars</span>
+                        </div>
+                        <div class="count">
+                            {{repo.repository.stargazers_count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> Watchers</span>
+                        </div>
+                        <div class="count">
+                            {{repo.repository.watchers_count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-code-fork" aria-hidden="true"></i> Forks</span>
+                        </div>
+                        <div class="count">
+                            {{repo.repository.forks_count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-exclamation" aria-hidden="true"></i> Issues</span>
+                        </div>
+                        <div class="count">
+                            {{repo.repository.open_issues_count}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row description">
+              {{repo.repository.description}}
+            </div>
         </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="row info-item">
-            <div class="title">
-              <span><i class="fa fa-eye" aria-hidden="true"></i> Watchers</span>
-            </div>
-            <div class="count">
-              {{repo.repository.watchers_count}}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="row info-item">
-            <div class="title">
-              <span><i class="fa fa-code-fork" aria-hidden="true"></i> Forks</span>
-            </div>
-            <div class="count">
-              {{repo.repository.forks_count}}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div class="row info-item">
-            <div class="title">
-              <span><i class="fa fa-exclamation" aria-hidden="true"></i> Issues</span>
-            </div>
-            <div class="count">
-              {{repo.repository.open_issues_count}}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
