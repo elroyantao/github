@@ -74,6 +74,7 @@ if (DEBUG) {
     config.output.publicPath = 'http://localhost:3001/static/';
 
 } else {
+    config.output.path = path.join(__dirname, 'public/dist');
     config.plugins = config.plugins.concat([
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
@@ -83,7 +84,7 @@ if (DEBUG) {
         new AssetsPlugin({
             path: path.join(__dirname, 'public')
         }),
-        new ExtractTextPlugin("style.css", {
+        new ExtractTextPlugin("style.[chunkhash].css", {
             allChunks: true
         })
     ]);

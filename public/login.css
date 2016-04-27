@@ -1,0 +1,20 @@
+body{
+  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+  font-size: 30px;
+  color: #4C5E8C;
+  margin-bottom: 40px;
+}
+.login{
+  background: #F1F3F8;
+  color: #4C5E8C;
+}
+.login:hover{
+  background: #D0D6E5;
+}

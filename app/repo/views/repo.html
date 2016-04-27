@@ -2,7 +2,7 @@
     <div class="list-container col-sm-10 col-sm-offset-1">
         <div class="list-item jumbotron">
             <div class="title-region">
-                <a href="#" class="repo-title">{{repo.repository.name}}</a>
+                <a ui-sref="repo({username : repo.repository.owner.login,repo:repo.repository.name})" class="repo-title">{{repo.repository.name}}</a>
                 <a ng-href="{{repo.repository.html_url}}" class="btn btn-default view-btn" role="button" target="_blank">View on github</a>
             </div>
             <div class="owners">
