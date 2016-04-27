@@ -1,0 +1,51 @@
+<div class="page-container container">
+    <div class="list-container col-sm-10 col-sm-offset-1">
+        <div class="list-item jumbotron" ng-repeat="repo in list.repos">
+            <a ui-sref="repo({id:repo.name})" class="repo-title">{{repo.name}}</a>
+            <br>
+            <br>
+            <div class="row info">
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-star" aria-hidden="true"></i> Stars</span>
+                        </div>
+                        <div class="count">
+                            {{repo.stargazers_count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> Watchers</span>
+                        </div>
+                        <div class="count">
+                            {{repo.watchers_count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-code-fork" aria-hidden="true"></i> Forks</span>
+                        </div>
+                        <div class="count">
+                            {{repo.forks_count}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="row info-item">
+                        <div class="title">
+                            <span><i class="fa fa-exclamation" aria-hidden="true"></i> Issues</span>
+                        </div>
+                        <div class="count">
+                            {{repo.open_issues_count}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

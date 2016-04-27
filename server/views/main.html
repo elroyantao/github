@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>github</title>
-  </head>
-  <body>
-    <div class="">
-      main
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="{{cssFile}}" media="screen" title="no title" charset="utf-8">
+</head>
+
+<body ng-app="github">
+    <nav class="header navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">GithubViewer</a>
+            </div>
+            <div class="nav navbar-nav navbar-right">
+                <a class="navbar-brand" href="{{user.html_url}}">
+                  <img src="{{user.avatar_url}}" alt="{{user.name}}" class="img-rounded" />
+                </a>
+                <a class="name" href="{{user.html_url}}">{{user.name}}</a>
+                <a href="/logout" class="btn btn-default logout" role="button">Logout</a>
+
+            </div>
+        </div>
+    </nav>
+    <div class="page-container" ui-view>
     </div>
 
-  </body>
+    <script type="text/javascript">
+        var user = {{user | json | safe}}
+    </script>
+    {% for jsFile in jsFiles %}
+    <script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
+
+
+</body>
+
 </html>

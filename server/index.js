@@ -2,8 +2,14 @@ var express = require('express'),
   chalk = require('chalk'),
   passport = require('passport'),
   GithubStrategy = require('passport-github').Strategy,
-  config = require('./config'),
-  consolidate = require('consolidate');
+  consolidate = require('consolidate'),
+  bodyParser = require('body-parser'),
+  session = require('express-session'),
+  cookieParser = require('cookie-parser'),
+  _ = require('lodash');;
+
+var config = require('./config'),
+  routes = require('./routes');
 
 
 var app = express();
@@ -16,6 +22,43 @@ app.set('view engine', 'html');
 app.set('views', __dirname+'/views');
 
 
+app.use(express.static('public'));
+  // app.use(express.cookieParser());
+  app.use(cookieParser());
+
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
+  // app.use(express.bodyParser());
+  app.use(session({
+    saveUninitialized: true,
+    resave: true,
+    secret: 'keyboard cat',
+    sessionKey: 'sessionId',
+    cookie: {
+      maxAge: 3600*24,
+      httpOnly: true,
+      secure : false
+    }
+  }));
+  passport.serializeUser(function(user, done) {
+    // console.log('serializeUser',JSON.stringify(user));
+    var id = JSON.stringify(user);
+    done(null, id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    // console.log('deserializeUser',id);
+    var user = JSON.parse(id);
+    done(null, user);
+  });
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+  // app.use(app.router);
+
+
 
 
 
@@ -23,7 +66,7 @@ app.set('views', __dirname+'/views');
 passport.use(new GithubStrategy({
   clientID: config.github.clientID,
   clientSecret: config.github.clientSecret,
-  callbackURL: 'http://127.0.0.1:4000/auth/github/callback',
+  callbackURL: 'http://localhost:4000/auth/github/callback',
   passReqToCallback: true
 },
 function (req, accessToken, refreshToken, profile, done) {
@@ -33,53 +76,17 @@ function (req, accessToken, refreshToken, profile, done) {
   var providerData = profile._json;
   providerData.accessToken = accessToken;
   providerData.refreshToken = refreshToken;
-  console.log(chalk.red(JSON.stringify(accessToken)));
-
-  // // Create the user OAuth profile
-  // var displayName = profile.displayName ? profile.displayName.trim() : profile.username.trim();
-  // var iSpace = displayName.indexOf(' '); // index of the whitespace following the firstName
-  // var firstName = iSpace !== -1 ? displayName.substring(0, iSpace) : displayName;
-  // var lastName = iSpace !== -1 ? displayName.substring(iSpace + 1) : '';
-  //
-  // var providerUserProfile = {
-  //   firstName: firstName,
-  //   lastName: lastName,
-  //   displayName: displayName,
-  //   email: profile.emails[0].value,
-  //   username: profile.username,
-  //   // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-  //   profileImageURL: (providerData.avatar_url) ? providerData.avatar_url : undefined,
-  //   // jscs:enable
-  //   provider: 'github',
-  //   providerIdentifierField: 'id',
-  //   providerData: providerData
+  // console.log(chalk.red(JSON.stringify(providerData)));
+  var user = _.pick(providerData,['login','id','avatar_url','html_url','name','accessToken'])
+  // var user = {
+  //   token : accessToken
   // };
-  //
-  // // Save the user OAuth profile
-  // users.saveOAuthUserProfile(req, providerUserProfile, done);
+  done(null,user);
+
 }));
 
+routes(app);
 
-app.get('/auth/github',
-  passport.authenticate('github') );
-
-app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function(req, res) {
-    console.log('callback');
-    // Successful authentication, redirect home.
-    res.redirect('/');
-
-  });
-
-app.get('/login',function(req,res){
-  // console.log();
-  res.render('login');
-});
-
-app.get('/',function(req,res){
-  res.render('main');
-});
 
 app.listen(app.get('port'),function(){
   console.log('started');

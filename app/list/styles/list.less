@@ -1,0 +1,38 @@
+.list-container {
+    .list-item {
+        background-color: @base-color;
+        .repo-title{
+          color: @theme-color-1 !important;
+          text-decoration: none !important;
+          padding-bottom: 10px;
+          font-size: 25px;
+        }
+        .info {
+            .info-item {
+                display: flex;
+                justify-content: space-around;
+                border: 1px solid @theme-color-1;
+                border-radius: 5px;
+                overflow: hidden;
+                margin: 5px 10px;
+                height: 30px;
+                .title {
+                    background-color: @theme-color-2;
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 5px;
+                }
+                .count {
+                    background-color: @theme-color-4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-basis: 20%;
+                    padding: 0 5px;
+                }
+            }
+        }
+    }
+}
